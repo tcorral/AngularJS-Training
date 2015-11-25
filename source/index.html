@@ -5,13 +5,13 @@
     <title>AngularJS Training</title>
 </head>
 <body>
-    <div id="app">
-        <div ng-controller="FirstController">
-            Expression: {{ var1 }}
-        </div>
-        <div ng-controller="SecondController">
-            Expression: {{ var2 }}
-        </div>
+    <div id="app" ng-controller="RedditController">
+        <ul>
+            <li ng-repeat="item in rows track by item.id">
+                <img ng-src="{{item.thumbnail}}"/>
+                <span ng-bind="item.title"></span>
+            </li>
+        </ul>
     </div>
     <script data-main="scripts/app" src="http://requirejs.org/docs/release/2.1.20/minified/require.js"></script>
 </body>

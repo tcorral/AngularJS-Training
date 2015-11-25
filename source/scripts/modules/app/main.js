@@ -1,8 +1,6 @@
-define(['angular', './controller', './factory', '../alternative/main', 'module'], function (angular, controllerDefinition, factoryDefinition, alternativeModule, module) {
+define(['angular', './controller', './factory', 'module'], function (angular, controllerDefinition, factoryDefinition, module) {
 
-    var deps = [
-        alternativeModule.name
-    ];
+    var deps = [];
 
     module.name = 'app';
 

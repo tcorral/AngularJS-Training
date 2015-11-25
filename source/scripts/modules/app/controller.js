@@ -1,14 +1,20 @@
 define(function (require, exports, module) {
 
-    var definition = ['FirstController'];
+    var definition = ['RedditController'];
 
-    var FirstController = function ($scope, service) {
-        $scope.var1 = service.getMessage();
+    var RedditController = function ($scope, RedditFactory) {
+        $scope.rows = [];
+
+        RedditFactory
+            .load()
+            .then(function (rows) {
+                $scope.rows = rows;
+            });
     };
 
-    FirstController.$inject = ['$scope', 'app.Factory'];
+    RedditController.$inject = ['$scope', 'RedditFactory'];
 
-    definition.push(FirstController);
+    definition.push(RedditController);
 
     return definition;
 });
