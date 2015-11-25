@@ -1,14 +1,14 @@
 define(function (require, exports, module) {
 
-    var controllerDefinition = ['SecondController'];
+    var definition = ['SecondController'];
 
-    var SecondController = function ($scope, value) {
-        $scope.var2 = value;
+    var SecondController = function ($scope, service) {
+        $scope.var2 = service.getMessage();
     };
 
-    SecondController.$inject = ['$scope', 'alternative.Value'];
+    SecondController.$inject = ['$scope', 'alternative.Service'];
 
-    controllerDefinition.push(SecondController);
+    definition.push(SecondController);
 
-    return controllerDefinition;
+    return definition;
 });
