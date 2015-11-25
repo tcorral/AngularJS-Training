@@ -1,4 +1,4 @@
-define(['angular', './controller', '../alternative/main', 'module'], function (angular, controllerDefinition, alternativeModule, module) {
+define(['angular', './controller', './value', '../alternative/main', 'module'], function (angular, controllerDefinition, valueDefinition, alternativeModule, module) {
 
     var deps = [
         alternativeModule.name
@@ -10,6 +10,8 @@ define(['angular', './controller', '../alternative/main', 'module'], function (a
         .module(module.name, deps);
 
     mod.controller.apply(mod, controllerDefinition);
+
+    mod.value.apply(mod, valueDefinition);
 
     module.exports = mod;
 });
