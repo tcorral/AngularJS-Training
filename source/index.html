@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <title>AngularJS Training</title>
 </head>
-<body ng-controller="MyController">
-    Expression: {{ var1 }}
+<body>
+    <div id="app" ng-controller="FirstController">
+        Expression: {{ var1 }}
+    </div>
+    <div id="alternative" ng-controller="SecondController">
+        Expression: {{ var2 }}
+    </div>
     <script src="https://code.angularjs.org/1.2.28/angular.js"></script>
     <script>
         angular
                 .module('app', [])
-                .controller('MyController', function ($scope) {
-                    $scope.var1 = 'test';
+                .controller('FirstController', function ($scope) {
+                    $scope.var1 = 'first';
                 });
-        angular.bootstrap(document.body, ['app']);
+        angular.module('alternative', [])
+                .controller('SecondController', function ($scope) {
+                    $scope.var2 = 'second';
+                });
+        angular.bootstrap(document.getElementById('app'), ['app']);
+        angular.bootstrap(document.getElementById('alternative'), ['alternative']);
     </script>
 </body>
 </html>
