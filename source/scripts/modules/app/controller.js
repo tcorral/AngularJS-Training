@@ -1,1 +1,9 @@
-define(["angular"],function(a){var b=function(a){a.var1="first"};return b});
+define(function (require, exports, module) {
+    var FirstController = function ($scope) {
+        $scope.var1 = 'first';
+    };
+
+    FirstController.$inject = ['$scope'];
+
+    return FirstController;
+});
