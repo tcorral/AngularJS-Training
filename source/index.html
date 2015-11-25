@@ -6,12 +6,7 @@
 </head>
 <body>
     <div id="app">
-        <div ng-controller="OuterController as outer">
-            <span ng-bind="outer.var1"></span>
-            <div ng-controller="InnerController as inner">
-                <span ng-bind="inner.var1"></span>
-            </div>
-        </div>
+        <todo-list></todo-list>
     </div>
     <script data-main="scripts/app" src="http://requirejs.org/docs/release/2.1.20/minified/require.js"></script>
 </body>
