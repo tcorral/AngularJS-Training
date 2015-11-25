@@ -1,7 +1,1 @@
-define(['angular'], function (angular) {
-    var FirstController = function ($scope) {
-        $scope.var1 = 'first';
-    };
-
-    return FirstController;
-});
+define(["angular"],function(a){var b=function(a){a.var1="first"};return b});
