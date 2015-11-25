@@ -1,1 +1,13 @@
-define(["angular","./controller","module"],function(a,b,c){var d=[];c.name="alternative";var e=a.module(c.name,d).controller("SecondController",b);c.exports=e});
+define(['angular', './controller', 'module'], function (angular, controllerDefinition, module) {
+
+    var deps = [];
+
+    module.name = 'alternative';
+
+    var mod = angular
+                .module(module.name, deps);
+
+    mod.controller.apply(mod, controllerDefinition);
+
+    module.exports = mod;
+});
