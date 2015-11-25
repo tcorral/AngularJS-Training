@@ -1,4 +1,4 @@
-define(function (require, exports, module) {
+define(['angular'], function (angular) {
 
     var definition = ['todoList'];
 
@@ -10,6 +10,10 @@ define(function (require, exports, module) {
         template += '       <div>';
         template += '           <label>Mark/Unmark</label>';
         template += '           <input type="checkbox" ng-model="task.done"/>';
+        template += '       </div>';
+        template += '       <div>';
+        template += '           <label>Remove</label>';
+        template += '           <button ng-click="remove(task)"/>';
         template += '       </div>';
         template += '   </li>';
         template += '</ul>';
@@ -23,6 +27,11 @@ define(function (require, exports, module) {
             template: getTemplate(),
             link: function (scope, element, attrs) {
                 scope.tasks = Tasks;
+                scope.remove = function (task) {
+                    scope.tasks = scope.tasks.filter(function (item) {
+                        return item.id !== task.id;
+                    });
+                };
             }
         };
     };
