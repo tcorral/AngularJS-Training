@@ -10,6 +10,6 @@ require.config({
     }
 });
 
-require(['angular', 'modules/reddit/main'], function (angular) {
+require(['angular', 'modules/nested-controllers/main'], function (angular) {
     angular.bootstrap(document.getElementById('app'), ['app']);
 });
