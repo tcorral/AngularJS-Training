@@ -5,6 +5,7 @@ define(function (require, exports, module) {
     var RedditController = function ($scope, RedditFactory) {
         $scope.rows = [];
 
+        RedditFactory.setUrl('https://www.reddit.com/new.json');
         RedditFactory
             .load()
             .then(function (rows) {
