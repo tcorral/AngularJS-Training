@@ -1,4 +1,7 @@
-angular.module('app')
-    .controller('FirstController', function ($scope) {
+define(['angular'], function (angular) {
+    var FirstController = function ($scope) {
         $scope.var1 = 'first';
-    });
+    };
+
+    return FirstController;
+});
