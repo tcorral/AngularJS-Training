@@ -6,21 +6,6 @@
 </head>
 <body>
     AngularJS Training ruled by <span id="teacher-name"></span>
-    <br/>
-    <br/>
-    <input type="text" name="teacher-name-input"/>
-    <script>
-        var name = "Tomas Corral";
-        var contentNode = document.getElementById('teacher-name');
-        var inputNode = document.getElementsByName('teacher-name-input')[0];
-
-        contentNode.innerHTML = name;
-        inputNode.value = name;
-
-        inputNode.addEventListener('keyup', function () {
-            name = this.value;
-            contentNode.innerHTML = name;
-        });
-    </script>
+    <script src="https://code.angularjs.org/1.2.28/angular.js"></script>
 </body>
 </html>
