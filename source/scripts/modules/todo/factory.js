@@ -1,55 +1,108 @@
-define(function (require, exports, module) {
+define(['angular'], function (angular) {
 
     var definition = ['TasksFactory'];
 
-    var TasksFactory = function ($q) {
-        var tasksStore = [
-            {
-                title: 'Test task 1',
-                done: false,
-                id: 1
-            },
-            {
-                title: 'Test task 2',
-                done: false,
-                id: 2
-            },
-            {
-                title: 'Test task 3',
-                done: false,
-                id: 3
-            },
-            {
-                title: 'Test task 4',
-                done: false,
-                id: 4
-            }
-        ];
+    var TasksFactory = function (parseHeaders, $q, $http) {
+        var dataUrl = '';
 
-        return {
-            getAll: function () {
+        var getHttpBaseConfig = function(method) {
+            return angular.extend({}, parseHeaders, {
+                url: dataUrl,
+                method: method.toUpperCase()
+            });
+        };
+
+        var fetchAllFromServer = function () {
+            return $http(getHttpBaseConfig('get'))
+                        .then(function (data) {
+                           return data.data.results;
+                        });
+        };
+
+        var tasksFactory = {
+            setDataUrl: function (url) {
+                dataUrl = url;
+            },
+            load: function () {
                 var defer = $q.defer();
 
-                defer.resolve(tasksStore);
+                fetchAllFromServer()
+                    .then(
+                        function (tasks) {
+                            defer.resolve(tasks);
+                        },
+                        function (error) {
+                            defer.reject(error);
+                        }
+                    );
+
+                return defer.promise;
+            },
+            toggle: function (task) {
+                var defer = $q.defer();
+                var putConfig = {
+                    data: { done: task.done }
+                };
+
+                angular.extend(putConfig, getHttpBaseConfig('put'), {
+                    "Content-Type": "application/json"
+                });
+
+                putConfig.url += '/' + task.objectId;
+
+                $http(putConfig)
+                    .then(
+                        function () {
+                            fetchAllFromServer()
+                                .then(
+                                    function (tasks) {
+                                        defer.resolve(tasks);
+                                    },
+                                    function (error) {
+                                        defer.reject(error);
+                                    }
+                                );
+                        },
+                        function (error) {
+                            defer.reject(error);
+                        }
+                    );
 
                 return defer.promise;
             },
             remove: function (task) {
                 var defer = $q.defer();
 
-                tasksStore = tasksStore.filter(function (item) {
-                    return item.id !== task.id;
-                });
+                var deleteConfig = getHttpBaseConfig('delete');
+                deleteConfig.url += '/' + task.objectId;
 
-                defer.resolve(tasksStore);
+                $http(deleteConfig)
+                    .then(
+                        function () {
+                            fetchAllFromServer()
+                                .then(
+                                    function (tasks) {
+                                        defer.resolve(tasks);
+                                    },
+                                    function (error) {
+                                        defer.reject(error);
+                                    }
+                                )
+                        },
+                        function (error) {
+                            defer.reject(error);
+                        }
+                    );
 
                 return defer.promise;
             }
         };
+
+        return tasksFactory;
     };
 
 
-    TasksFactory.$inject = ['$q'];
+    TasksFactory.$inject = ['parseHeaders', '$q', '$http'];
 
     definition.push(TasksFactory);
 

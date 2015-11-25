@@ -1,4 +1,4 @@
-define(['angular', './controller', './factory', './directive', 'module'], function (angular, controllerDefinition, factoryDefinition, directiveDefinition, module) {
+define(['angular', './controller', './parseHeadersValue', './factory', './directive', 'module'], function (angular, controllerDefinition, parseHeadersValueDefinition, factoryDefinition, directiveDefinition, module) {
 
     var deps = [];
 
@@ -8,6 +8,8 @@ define(['angular', './controller', './factory', './directive', 'module'], functi
         .module(module.name, deps);
 
     mod.controller.apply(mod, controllerDefinition);
+
+    mod.value.apply(mod, parseHeadersValueDefinition);
 
     mod.factory.apply(mod, factoryDefinition);
 

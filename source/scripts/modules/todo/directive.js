@@ -5,11 +5,11 @@ define(['angular'], function (angular) {
     var getTemplate = function () {
         var template = '';
         template += '<ul>';
-        template += '   <li ng-repeat="task in tasks track by task.id">';
-        template += '       <span data-id="{{task.id}}" ng-bind="task.title" ng-class="{ strike: task.done }"></span>';
+        template += '   <li ng-repeat="task in tasks track by task.objectId">';
+        template += '       <span data-id="{{task.objectId}}" ng-bind="task.title" ng-class="{ strike: task.done }"></span>';
         template += '       <div>';
         template += '           <label>Mark/Unmark</label>';
-        template += '           <input type="checkbox" ng-model="task.done"/>';
+        template += '           <input type="checkbox" ng-model="task.done" ng-change="toggle(task)"/>';
         template += '       </div>';
         template += '       <div>';
         template += '           <label>Remove</label>';
@@ -25,12 +25,16 @@ define(['angular'], function (angular) {
             restrict: 'E',  // AEC
             scope: {
                 tasks: '=',
+                onToggle: '&',
                 onRemove: '&'
             },
             template: getTemplate(),
             link: function (scope, element, attrs) {
                 scope.remove = function (task) {
                     scope.onRemove({ task: task });
+                };
+                scope.toggle = function (task) {
+                    scope.onToggle({ task: task });
                 };
             }
         };
