@@ -1,4 +1,4 @@
-define(function (require, exports, module) {
+define(['angular'], function (angular) {
 
     var definition = ['todoList'];
 
@@ -6,7 +6,11 @@ define(function (require, exports, module) {
         var template = '';
         template += '<ul>';
         template += '   <li ng-repeat="task in tasks track by task.id">';
-        template += '       <span ng-bind="task.title"></span>';
+        template += '       <span data-id="{{task.id}}" ng-bind="task.title"></span>';
+        template += '       <div>';
+        template += '           <label>Mark/Unmark</label>';
+        template += '           <input type="checkbox" ng-click="done(task)"/>';
+        template += '       </div>';
         template += '   </li>';
         template += '</ul>';
         return template;
@@ -19,7 +23,13 @@ define(function (require, exports, module) {
             template: getTemplate(),
             link: function (scope, element, attrs) {
                 scope.tasks = Tasks;
+                scope.done = function (task) {
+                    task.done = !task.done;
+                    var methods = ['removeClass', 'addClass'];
+                    var method = methods[Number(task.done)];
 
+                    angular.element(document.querySelector('[data-id="'+ task.id +'"]'))[method]('strike');
+                };
             }
         };
     };
