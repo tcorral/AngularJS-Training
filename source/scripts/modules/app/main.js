@@ -1,7 +1,17 @@
-define(['angular', './controller'], function (angular, controller) {
-    var module = angular.module('app', []);
+define(function (require, exports, module) {
+    var angular = require('angular');
+    var controller = require('./controller');
+    var alternativeModule = require('../alternative/main');
 
-    module.controller('FirstController', controller);
+    var deps = [
+        alternativeModule.name
+    ];
 
-    return module;
+    module.name = 'app';
+
+    var mod = angular
+        .module(module.name, deps)
+        .controller('FirstController', controller);
+
+    module.exports = mod;
 });

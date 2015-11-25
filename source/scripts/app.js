@@ -10,7 +10,6 @@ require.config({
     }
 });
 
-require(['angular', './modules/app/main', './modules/alternative/main'], function (angular) {
-    angular.bootstrap(document.getElementById('alternative'), ['alternative']);
+require(['angular', './modules/app/main'], function (angular, app) {
     angular.bootstrap(document.getElementById('app'), ['app']);
 });

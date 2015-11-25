@@ -5,11 +5,13 @@
     <title>AngularJS Training</title>
 </head>
 <body>
-    <div id="app" ng-controller="FirstController">
-        Expression: {{ var1 }}
-    </div>
-    <div id="alternative" ng-controller="SecondController">
-        Expression: {{ var2 }}
+    <div id="app">
+        <div ng-controller="FirstController">
+            Expression: {{ var1 }}
+        </div>
+        <div ng-controller="SecondController">
+            Expression: {{ var2 }}
+        </div>
     </div>
     <script data-main="scripts/app" src="http://requirejs.org/docs/release/2.1.20/minified/require.js"></script>
 </body>
