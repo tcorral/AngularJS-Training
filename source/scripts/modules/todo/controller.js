@@ -1,15 +1,21 @@
 define(function (require, exports, module) {
 
-    var definition = ['InnerController'];
+    var definition = ['TodoController'];
 
-    var InnerController = function () {
+    var TodoController = function (Tasks) {
         var vc = this;
-        vc.var1 = 'Var1 InnerController';
+        vc.tasks = Tasks;
+
+        vc.remove = function (task) {
+            vc.tasks = vc.tasks.filter(function (item) {
+                return item.id !== task.id;
+            });
+        };
     };
 
-    InnerController.$inject = [];
+    TodoController.$inject = ['Tasks'];
 
-    definition.push(InnerController);
+    definition.push(TodoController);
 
     return definition;
 });

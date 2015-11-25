@@ -20,23 +20,23 @@ define(['angular'], function (angular) {
         return template;
     };
 
-    var TodoListDirective = function (Tasks) {
+    var TodoListDirective = function () {
         return {
             restrict: 'E',  // AEC
-            scope: {},
+            scope: {
+                tasks: '=',
+                onRemove: '&'
+            },
             template: getTemplate(),
             link: function (scope, element, attrs) {
-                scope.tasks = Tasks;
                 scope.remove = function (task) {
-                    scope.tasks = scope.tasks.filter(function (item) {
-                        return item.id !== task.id;
-                    });
+                    scope.onRemove({ task: task });
                 };
             }
         };
     };
 
-    TodoListDirective.$inject = ['Tasks'];
+    TodoListDirective.$inject = [];
 
     definition.push(TodoListDirective);
 
