@@ -9,7 +9,6 @@ define(['angular'], function (angular) {
         template += '       <span data-id="{{task.id}}" ng-bind="task.title" ng-class="{ strike: task.done }"></span>';
         template += '       <div>';
         template += '           <label>Mark/Unmark</label>';
-        template += '               {{task.done}}';
         template += '           <input type="checkbox" ng-model="task.done"/>';
         template += '       </div>';
         template += '   </li>';
