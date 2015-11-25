@@ -10,6 +10,6 @@ require.config({
     }
 });
 
-require(['angular', './modules/app/main'], function (angular) {
+require(['angular', 'modules/reddit/main'], function (angular) {
     angular.bootstrap(document.getElementById('app'), ['app']);
 });

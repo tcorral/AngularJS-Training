@@ -6,6 +6,10 @@ define(function (require, exports, module) {
         var dataUrl = '';
         var rowsStore = [];
 
+        var fetchFromServer = function() {
+            return $http.get(dataUrl);
+        };
+
         return {
             setUrl: function (url) {
                 dataUrl = url;
@@ -16,8 +20,7 @@ define(function (require, exports, module) {
                 if(!dataUrl){
                     defer.reject(new Error('The url has not been set, please use setUrl method first'));
                 } else {
-                    $http
-                        .get(dataUrl)
+                    fetchFromServer()
                         .then(
                             function (data) {
                                 var dirtyNews = data.data.data.children;
@@ -41,7 +44,6 @@ define(function (require, exports, module) {
                             }
                         );
                 }
-
 
                 return defer.promise;
             }
