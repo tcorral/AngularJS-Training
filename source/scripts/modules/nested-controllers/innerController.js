@@ -2,11 +2,12 @@ define(function (require, exports, module) {
 
     var definition = ['InnerController'];
 
-    var InnerController = function ($scope) {
-        $scope.var1 = 'Var1 InnerController';
+    var InnerController = function () {
+        var vc = this;
+        vc.var1 = 'Var1 InnerController';
     };
 
-    InnerController.$inject = ['$scope'];
+    InnerController.$inject = [];
 
     definition.push(InnerController);
 

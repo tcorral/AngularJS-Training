@@ -6,10 +6,10 @@
 </head>
 <body>
     <div id="app">
-        <div ng-controller="OuterController">
-            <span ng-bind="var1"></span>
-            <div ng-controller="InnerController">
-                <span ng-bind="var1"></span>
+        <div ng-controller="OuterController as outer">
+            <span ng-bind="outer.var1"></span>
+            <div ng-controller="InnerController as inner">
+                <span ng-bind="inner.var1"></span>
             </div>
         </div>
     </div>
