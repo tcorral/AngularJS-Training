@@ -1,8 +1,8 @@
 define(function (require, exports, module) {
 
-    var definition = ['app.Service'];
+    var definition = ['app.Factory'];
 
-    var Service = function () {
+    var Factory = function () {
         var message = 'first';
         return {
             getMessage: function () {
@@ -11,9 +11,9 @@ define(function (require, exports, module) {
         };
     };
 
-    Service.$inject = [];
+    Factory.$inject = [];
 
-    definition.push(Service);
+    definition.push(Factory);
 
     return definition;
 

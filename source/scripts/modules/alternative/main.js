@@ -1,4 +1,4 @@
-define(['angular', './controller', './service', 'module'], function (angular, controllerDefinition, serviceDefinition, module) {
+define(['angular', './controller', './factory', 'module'], function (angular, controllerDefinition, factoryDefinition, module) {
 
     var deps = [];
 
@@ -9,7 +9,7 @@ define(['angular', './controller', './service', 'module'], function (angular, co
 
     mod.controller.apply(mod, controllerDefinition);
 
-    mod.service.apply(mod, serviceDefinition);
+    mod.factory.apply(mod, factoryDefinition);
 
     module.exports = mod;
 });

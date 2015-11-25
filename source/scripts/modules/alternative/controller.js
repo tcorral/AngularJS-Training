@@ -6,7 +6,7 @@ define(function (require, exports, module) {
         $scope.var2 = service.getMessage();
     };
 
-    SecondController.$inject = ['$scope', 'alternative.Service'];
+    SecondController.$inject = ['$scope', 'alternative.Factory'];
 
     definition.push(SecondController);
 
