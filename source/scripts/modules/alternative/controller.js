@@ -1,9 +1,1 @@
-define(function (require, exports, module) {
-    var SecondController = function ($scope) {
-        $scope.var2 = 'second';
-    };
-
-    SecondController.$inject = ['$scope'];
-
-    return SecondController;
-});
+define(function(a,b,c){var d=function(a){a.var2="second"};return d.$inject=["$scope"],d});
