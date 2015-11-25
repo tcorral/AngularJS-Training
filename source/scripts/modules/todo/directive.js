@@ -1,4 +1,4 @@
-define(['angular'], function (angular) {
+define(function (require, exports, module) {
 
     var definition = ['todoList'];
 
