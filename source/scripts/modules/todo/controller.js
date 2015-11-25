@@ -2,18 +2,30 @@ define(function (require, exports, module) {
 
     var definition = ['TodoController'];
 
-    var TodoController = function (Tasks) {
+    var TodoController = function (TasksFactory) {
         var vc = this;
-        vc.tasks = Tasks;
+        vc.tasks = [];
+
+        function initialize () {
+            TasksFactory
+                .getAll()
+                .then(function (tasks) {
+                    vc.tasks = tasks;
+                });
+        }
 
         vc.remove = function (task) {
-            vc.tasks = vc.tasks.filter(function (item) {
-                return item.id !== task.id;
-            });
+            TasksFactory
+                .remove(task)
+                .then(function (tasks) {
+                    vc.tasks = tasks;
+                });
         };
+
+        initialize();
     };
 
-    TodoController.$inject = ['Tasks'];
+    TodoController.$inject = ['TasksFactory'];
 
     definition.push(TodoController);
 
