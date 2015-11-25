@@ -7,8 +7,6 @@ define(function (require, exports, module) {
         template += '<ul>';
         template += '   <li ng-repeat="task in tasks track by task.id">';
         template += '       <span ng-bind="task.title"></span>';
-        template += '       <button ng-click="done()">Mark done</button>';
-        template += '       <button ng-click="remove()">Remove</button>';
         template += '   </li>';
         template += '</ul>';
         return template;
@@ -21,6 +19,7 @@ define(function (require, exports, module) {
             template: getTemplate(),
             link: function (scope, element, attrs) {
                 scope.tasks = Tasks;
+
             }
         };
     };
