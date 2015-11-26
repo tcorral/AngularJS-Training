@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>AngularJS Training</title>
 </head>
-<body ng-controller="MainController as mainCtrl">
+<body ng-controller="MainController as mainCtrl" ng-cloak>
     <p ng-bind="mainCtrl.message"></p>
     <p>
-        !! <span ng-bind="mainCtrl.anotherName"></span> !!
+        <span ng-bind="'!!'"></span> <span ng-bind="mainCtrl.anotherName"></span> <span ng-bind="'!!'"></span>
     </p>
     <script data-main="scripts/app" src="http://requirejs.org/docs/release/2.1.20/minified/require.js"></script>
 </body>
