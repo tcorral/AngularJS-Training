@@ -1,17 +1,16 @@
-define(['angular', './controllers/main', './services/spanishNames/main', './extensions/services/spanishNames/main', 'module'],
-    function (angular, mainControllerDefinition, spanishNamesModule, spanishNamesServiceExtension, module) {
+define(['angular', './controllers/main', './services/seaAnimals/main', 'module'],
+    function (angular, mainControllerDefinition, seaAnimalsModule, module) {
         'use strict';
 
         var deps = [
-            spanishNamesModule.name
+            seaAnimalsModule.name
         ];
 
         module.name = 'app';
 
         var mod = angular
             .module(module.name, deps)
-            .controller.apply(mod, mainControllerDefinition)
-            .config(spanishNamesServiceExtension);
+            .controller.apply(mod, mainControllerDefinition);
 
         module.exports = mod;
     });

@@ -3,12 +3,12 @@ define(['angular'], function (angular) {
 
     var definition = ['MainController'];
 
-    var MainController = function (SpanishNames){
+    var MainController = function (SeaAnimals){
         var vc = this;
         vc.name = '';
 
         function initialize() {
-            SpanishNames
+            SeaAnimals
                 .get()
                 .then(function (name) {
                     vc.name = name;
@@ -18,7 +18,7 @@ define(['angular'], function (angular) {
         initialize();
     };
 
-    MainController.$inject = ['SpanishNames'];
+    MainController.$inject = ['SeaAnimals'];
 
     definition.push(MainController);
 
