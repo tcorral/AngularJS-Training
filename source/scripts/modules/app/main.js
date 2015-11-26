@@ -1,5 +1,5 @@
-define(['angular', './directives/clot/main', 'module'],
-    function (angular, clotDirectiveModule, module) {
+define(['angular', './directives/clot/main', './extensions/directives/clot/main', 'module'],
+    function (angular, clotDirectiveModule, clotDirectiveExtension, module) {
         'use strict';
 
         var deps = [
@@ -9,7 +9,8 @@ define(['angular', './directives/clot/main', 'module'],
         module.name = 'app';
 
         var mod = angular
-            .module(module.name, deps);
+            .module(module.name, deps)
+            .config(clotDirectiveExtension);
 
         module.exports = mod;
     });
