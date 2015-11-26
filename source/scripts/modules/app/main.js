@@ -11,7 +11,10 @@ define(['angular', './controllers/main', './services/greetings/main', './extensi
         var mod = angular
             .module(module.name, deps)
             .controller.apply(mod, mainControllerDefinition)
-            .config(greetingsProviderExtension);
+            .config(greetingsProviderExtension)
+            .config(['GreetingsProvider', function (GreetingsProvider) {
+                GreetingsProvider.setMessage('Goede avond!');
+            }]);
 
         module.exports = mod;
     });
