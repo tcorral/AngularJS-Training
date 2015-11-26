@@ -10,7 +10,10 @@ define(['angular', './controllers/main', './services/greetings/main', 'module'],
 
         var mod = angular
             .module(module.name, deps)
-            .controller.apply(mod, mainControllerDefinition);
+            .controller.apply(mod, mainControllerDefinition)
+            .config(['GreetingsProvider', function (GreetingsProvider) {
+                GreetingsProvider.setMessage('Hola!!');
+            }]);
 
         module.exports = mod;
     });
