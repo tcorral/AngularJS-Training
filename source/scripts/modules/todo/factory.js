@@ -6,11 +6,11 @@ define(['angular'], function (angular) {
         var dataUrl = '';
 
         var getHttpBaseConfig = function(method) {
-            //return {};
-            return angular.extend({}, parseHeaders, {
-                url: dataUrl,
-                method: method.toUpperCase()
-            });
+            return {};
+            //return angular.extend({}, parseHeaders, {
+            //    url: dataUrl,
+            //    method: method.toUpperCase()
+            //});
         };
 
         var fetchAllFromServer = function () {
