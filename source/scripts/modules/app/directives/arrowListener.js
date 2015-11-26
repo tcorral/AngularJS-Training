@@ -13,11 +13,9 @@ define(['angular'], function (angular) {
             link: function (scope, element, attrs) {
                 element.bind('keydown', function(e) {
                     if (e.keyCode === 39) {
-                        console.log('right');
                         scope.moveRight();
                     }
                     if (e.keyCode === 37) {
-                        console.log('left');
                         scope.moveLeft();
                     }
                 })

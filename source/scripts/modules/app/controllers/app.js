@@ -7,15 +7,15 @@ define(function (require, exports, module) {
         $scope.numbersDisplayed = [0,1,2,3,4,5];
 
         $scope.moveRight = function() {
-            history.unshift($scope.numbersDisplayed.shift());
-            console.log('history:', history);
-            console.log('numbersDisplayed:', $scope.numbersDisplayed);
+            $scope.$evalAsync(function($scope) {
+                history.unshift($scope.numbersDisplayed.shift());
+            });
         };
 
         $scope.moveLeft = function() {
-            $scope.numbersDisplayed.unshift(history.shift());
-            console.log('history:', history);
-            console.log('numbersDisplayed:', $scope.numbersDisplayed);
+            $scope.$evalAsync(function($scope) {
+                $scope.numbersDisplayed.unshift(history.shift());
+            });
         };
     };
 
