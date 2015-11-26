@@ -1,4 +1,5 @@
 define(['angular'], function (angular) {
+    'use strict';
 
     var definition = ['arrowListener'];
 
