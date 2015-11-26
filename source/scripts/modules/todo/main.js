@@ -1,6 +1,9 @@
-define(['angular', 'postal', './notifyController', './controller', './parseHeadersValue', './mediator', './factory', './directive', 'module'],
-    function (angular, postal, notifyController, controllerDefinition, parseHeadersValueDefinition, mediatorDefinition,
-              factoryDefinition, directiveDefinition, module) {
+define(['angular', 'postal', './controllers/notifier', './controllers/todo',
+        './services/parseHeadersValue', './services/TasksMediator', './services/TasksFactory',
+        './directives/todoList', 'module'],
+    function (angular, postal, notifyControllerDefinition, todoControllerDefinition,
+              parseHeadersValueDefinition, TasksMediatorDefinition, TasksFactoryDefinition,
+              todoListDirectiveDefinition, module) {
 
         var deps = [];
 
@@ -9,17 +12,17 @@ define(['angular', 'postal', './notifyController', './controller', './parseHeade
         var mod = angular
             .module(module.name, deps);
 
-        mod.controller.apply(mod, controllerDefinition);
+        mod.controller.apply(mod, todoControllerDefinition);
 
-        mod.controller.apply(mod, notifyController);
+        mod.controller.apply(mod, notifyControllerDefinition);
 
         mod.value.apply(mod, parseHeadersValueDefinition);
 
-        mod.value.apply(mod, mediatorDefinition);
+        mod.value.apply(mod, TasksMediatorDefinition);
 
-        mod.factory.apply(mod, factoryDefinition);
+        mod.factory.apply(mod, TasksFactoryDefinition);
 
-        mod.directive.apply(mod, directiveDefinition);
+        mod.directive.apply(mod, todoListDirectiveDefinition);
 
         mod.config(['$provide', function ($provide) {
             $provide.decorator('$rootScope', [
