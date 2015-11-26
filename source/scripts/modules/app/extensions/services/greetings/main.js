@@ -1,4 +1,4 @@
-define(['angular'], function (angular) {
+define(function (require, exports, module) {
     'use strict';
 
     var GreetingsProviderExtension = function ($provide) {
@@ -20,5 +20,5 @@ define(['angular'], function (angular) {
 
     GreetingsProviderExtension.$inject = ['$provide'];
 
-    return GreetingsProviderExtension;
+    module.exports = GreetingsProviderExtension;
 });

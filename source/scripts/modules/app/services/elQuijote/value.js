@@ -1,13 +1,15 @@
-define(['angular'], function (angular) {
+define(function (require, exports, module) {
     'use strict';
+
+    module.name = 'el_quijote';
 
     var definition = [];
 
-    var key = 'el_quijote';
+    var key = module.name;
 
     var value = 'Dulcinea';
 
     definition.push(key, value);
 
-    return definition;
+    module.exports = definition;
 });

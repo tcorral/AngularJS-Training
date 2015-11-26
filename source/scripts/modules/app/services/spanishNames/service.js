@@ -1,7 +1,9 @@
-define(['angular'], function (angular) {
+define(function (require, exports, module) {
     'use strict';
 
-    var definition = ['SpanishNames'];
+    module.name = 'SpanishNames';
+
+    var definition = [module.name];
 
     var SpanishNamesService = function ($q) {
         var spanishNames = [
@@ -30,5 +32,5 @@ define(['angular'], function (angular) {
 
     definition.push(SpanishNamesService);
 
-    return definition;
+    module.exports = definition;
 });

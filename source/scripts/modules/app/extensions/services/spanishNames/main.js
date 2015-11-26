@@ -1,4 +1,4 @@
-define(['angular'], function (angular) {
+define(function (require, exports, module) {
     'use strict';
 
     var SpanishNamesServiceExtension = function ($provide) {
@@ -20,5 +20,5 @@ define(['angular'], function (angular) {
 
     SpanishNamesServiceExtension.$inject = ['$provide'];
 
-    return SpanishNamesServiceExtension;
+    module.exports = SpanishNamesServiceExtension;
 });

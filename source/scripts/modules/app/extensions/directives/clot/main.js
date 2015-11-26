@@ -1,4 +1,4 @@
-define(['angular'], function (angular) {
+define(function (require, exports, module) {
     'use strict';
 
     var ClotExtension = function ($provide) {
@@ -16,5 +16,5 @@ define(['angular'], function (angular) {
 
     ClotExtension.$inject = ['$provide'];
 
-    return ClotExtension;
+    module.exports = ClotExtension;
 });

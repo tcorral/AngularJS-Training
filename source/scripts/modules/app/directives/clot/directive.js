@@ -1,7 +1,9 @@
-define(['angular'], function (angular) {
+define(function (require, exports, module) {
     'use strict';
 
-    var definition = ['clot'];
+    module.name = 'clot';
+
+    var definition = [module.name];
 
     var ClotDirective = function (){
         return {
@@ -16,5 +18,5 @@ define(['angular'], function (angular) {
 
     definition.push(ClotDirective);
 
-    return definition;
+    module.exports = definition;
 });

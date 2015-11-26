@@ -1,7 +1,9 @@
-define(['angular'], function (angular) {
+define(function (require, exports, module) {
     'use strict';
 
-    var definition = ['MainController'];
+    module.name = 'MainController';
+
+    var definition = [module.name];
 
     var MainController = function (Greetings){
         var vc = this;
@@ -22,5 +24,5 @@ define(['angular'], function (angular) {
 
     definition.push(MainController);
 
-    return definition;
+    module.exports = definition;
 });

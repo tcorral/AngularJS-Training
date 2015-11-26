@@ -1,4 +1,4 @@
-define(['angular'], function (angular) {
+define(function (require, exports, module) {
     'use strict';
 
     var elQuijoteExtension = function ($provide) {
@@ -9,5 +9,5 @@ define(['angular'], function (angular) {
 
     elQuijoteExtension.$inject = ['$provide'];
 
-    return elQuijoteExtension;
+    module.exports = elQuijoteExtension;
 });

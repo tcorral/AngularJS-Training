@@ -1,7 +1,9 @@
-define(['angular'], function (angular) {
+define(function (require, exports, module) {
     'use strict';
 
-    var definition = ['SeaAnimals'];
+    module.name = 'SeaAnimals';
+
+    var definition = [module.name];
 
     var SeaAnimalsFactory = function ($q) {
         var seaAnimals = [
@@ -32,5 +34,5 @@ define(['angular'], function (angular) {
 
     definition.push(SeaAnimalsFactory);
 
-    return definition;
+    module.exports = definition;
 });

@@ -1,4 +1,4 @@
-define(['angular'], function (angular) {
+define(function (require, exports, module) {
     'use strict';
 
     var SeaAnimalsFactoryExtension = function ($provide) {
@@ -20,5 +20,5 @@ define(['angular'], function (angular) {
 
     SeaAnimalsFactoryExtension.$inject = ['$provide'];
 
-    return SeaAnimalsFactoryExtension;
+    module.exports = SeaAnimalsFactoryExtension;
 });
