@@ -1,21 +1,39 @@
-define(['angular', './controller', './parseHeadersValue', './mediator', './factory', './directive', 'module'], function (angular, controllerDefinition, parseHeadersValueDefinition, mediatorDefinition, factoryDefinition, directiveDefinition, module) {
+define(['angular', 'postal', './notifyController', './controller', './parseHeadersValue', './mediator', './factory', './directive', 'module'],
+    function (angular, postal, notifyController, controllerDefinition, parseHeadersValueDefinition, mediatorDefinition,
+              factoryDefinition, directiveDefinition, module) {
 
-    var deps = [];
+        var deps = [];
 
-    module.name = 'app';
+        module.name = 'app';
 
-    var mod = angular
-        .module(module.name, deps);
+        var mod = angular
+            .module(module.name, deps);
 
-    mod.controller.apply(mod, controllerDefinition);
+        mod.controller.apply(mod, controllerDefinition);
 
-    mod.value.apply(mod, parseHeadersValueDefinition);
+        mod.controller.apply(mod, notifyController);
 
-    mod.value.apply(mod, mediatorDefinition);
+        mod.value.apply(mod, parseHeadersValueDefinition);
 
-    mod.factory.apply(mod, factoryDefinition);
+        mod.value.apply(mod, mediatorDefinition);
 
-    mod.directive.apply(mod, directiveDefinition);
+        mod.factory.apply(mod, factoryDefinition);
 
-    module.exports = mod;
-});
+        mod.directive.apply(mod, directiveDefinition);
+
+        mod.config(['$provide', function ($provide) {
+            $provide.decorator('$rootScope', [
+                '$delegate',
+                function ($delegate) {
+                    Object.defineProperty($delegate.constructor.prototype,
+                        '$bus', {
+                            value: postal,
+                            enumerable: false
+                        });
+
+                    return $delegate;
+                }
+            ]);
+        }]);
+        module.exports = mod;
+    });
