@@ -1,5 +1,5 @@
-define(['angular', './controllers/main', './services/seaAnimals/main', 'module'],
-    function (angular, mainControllerDefinition, seaAnimalsModule, module) {
+define(['angular', './controllers/main', './services/seaAnimals/main', './extensions/services/seaAnimals/main', 'module'],
+    function (angular, mainControllerDefinition, seaAnimalsModule, seaAnimalsFactoryExtension, module) {
         'use strict';
 
         var deps = [
@@ -10,7 +10,8 @@ define(['angular', './controllers/main', './services/seaAnimals/main', 'module']
 
         var mod = angular
             .module(module.name, deps)
-            .controller.apply(mod, mainControllerDefinition);
+            .controller.apply(mod, mainControllerDefinition)
+            .config(seaAnimalsFactoryExtension);
 
         module.exports = mod;
     });
