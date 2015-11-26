@@ -2,7 +2,7 @@ define(['angular'], function (angular) {
 
     var definition = ['TasksFactory'];
 
-    var TasksFactory = function (parseHeaders, $q, $http) {
+    var TasksFactory = function (parseHeaders, $q, $http, TasksMediator) {
         var dataUrl = '';
 
         var getHttpBaseConfig = function(method) {
@@ -15,7 +15,8 @@ define(['angular'], function (angular) {
         var fetchAllFromServer = function () {
             return $http(getHttpBaseConfig('get'))
                         .then(function (data) {
-                           return data.data.results;
+                            TasksMediator.tasks = data.data.results;
+                            return TasksMediator.tasks;
                         });
         };
 
@@ -24,19 +25,7 @@ define(['angular'], function (angular) {
                 dataUrl = url;
             },
             load: function () {
-                var defer = $q.defer();
-
-                fetchAllFromServer()
-                    .then(
-                        function (tasks) {
-                            defer.resolve(tasks);
-                        },
-                        function (error) {
-                            defer.reject(error);
-                        }
-                    );
-
-                return defer.promise;
+                return fetchAllFromServer()
             },
             update: function (task) {
                 var defer = $q.defer();
@@ -53,15 +42,7 @@ define(['angular'], function (angular) {
                 $http(putConfig)
                     .then(
                         function () {
-                            fetchAllFromServer()
-                                .then(
-                                    function (tasks) {
-                                        defer.resolve(tasks);
-                                    },
-                                    function (error) {
-                                        defer.reject(error);
-                                    }
-                                );
+                            defer.resolve(fetchAllFromServer());
                         },
                         function (error) {
                             defer.reject(error);
@@ -84,15 +65,7 @@ define(['angular'], function (angular) {
                 $http(postConfig)
                     .then(
                         function () {
-                            fetchAllFromServer()
-                                .then(
-                                    function (tasks) {
-                                        defer.resolve(tasks);
-                                    },
-                                    function (error) {
-                                        defer.reject(error);
-                                    }
-                                );
+                            defer.resolve(fetchAllFromServer());
                         },
                         function (error) {
                             defer.reject(error);
@@ -116,15 +89,7 @@ define(['angular'], function (angular) {
                 $http(putConfig)
                     .then(
                         function () {
-                            fetchAllFromServer()
-                                .then(
-                                    function (tasks) {
-                                        defer.resolve(tasks);
-                                    },
-                                    function (error) {
-                                        defer.reject(error);
-                                    }
-                                );
+                            defer.resolve(fetchAllFromServer());
                         },
                         function (error) {
                             defer.reject(error);
@@ -142,15 +107,7 @@ define(['angular'], function (angular) {
                 $http(deleteConfig)
                     .then(
                         function () {
-                            fetchAllFromServer()
-                                .then(
-                                    function (tasks) {
-                                        defer.resolve(tasks);
-                                    },
-                                    function (error) {
-                                        defer.reject(error);
-                                    }
-                                )
+                            defer.resolve(fetchAllFromServer());
                         },
                         function (error) {
                             defer.reject(error);
@@ -165,7 +122,7 @@ define(['angular'], function (angular) {
     };
 
 
-    TasksFactory.$inject = ['parseHeaders', '$q', '$http'];
+    TasksFactory.$inject = ['parseHeaders', '$q', '$http', 'TasksMediator'];
 
     definition.push(TasksFactory);
 

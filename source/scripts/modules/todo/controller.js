@@ -2,9 +2,10 @@ define(function (require, exports, module) {
 
     var definition = ['TodoController'];
 
-    var TodoController = function (TasksFactory) {
+    var TodoController = function (TasksMediator, TasksFactory) {
         var vc = this;
         vc.tasks = [];
+
         vc.task = {
             done: false,
             title: ''
@@ -15,47 +16,47 @@ define(function (require, exports, module) {
         function initialize () {
             TasksFactory
                 .load()
-                .then(function (tasks) {
-                    vc.tasks = tasks;
+                .then(function () {
+                   vc.tasks = TasksMediator.tasks;
                 });
         }
 
         vc.toggle = function (task) {
             TasksFactory
                 .toggle(task)
-                .then(function (tasks) {
-                    vc.tasks = tasks;
-                });
+                .then(function (){
+                    vc.tasks = TasksMediator.tasks;
+                })
         };
 
         vc.remove = function (task) {
             TasksFactory
                 .remove(task)
-                .then(function (tasks) {
-                    vc.tasks = tasks;
+                .then(function () {
+                    vc.tasks = TasksMediator.tasks;
                 });
         };
 
         vc.save = function (task) {
             TasksFactory
                 .save(task)
-                .then(function (tasks) {
-                    vc.tasks = tasks;
+                .then(function () {
+                    vc.tasks = TasksMediator.tasks;
                 });
         };
 
         vc.update = function (task) {
             TasksFactory
                 .update(task)
-                .then(function (tasks) {
-                    vc.tasks = tasks;
+                .then(function () {
+                    vc.tasks = TasksMediator.tasks;
                 });
         };
 
         initialize();
     };
 
-    TodoController.$inject = ['TasksFactory'];
+    TodoController.$inject = ['TasksMediator', 'TasksFactory'];
 
     definition.push(TodoController);
 

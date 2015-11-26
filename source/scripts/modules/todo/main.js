@@ -1,4 +1,4 @@
-define(['angular', './controller', './parseHeadersValue', './factory', './directive', 'module'], function (angular, controllerDefinition, parseHeadersValueDefinition, factoryDefinition, directiveDefinition, module) {
+define(['angular', './controller', './parseHeadersValue', './mediator', './factory', './directive', 'module'], function (angular, controllerDefinition, parseHeadersValueDefinition, mediatorDefinition, factoryDefinition, directiveDefinition, module) {
 
     var deps = [];
 
@@ -10,6 +10,8 @@ define(['angular', './controller', './parseHeadersValue', './factory', './direct
     mod.controller.apply(mod, controllerDefinition);
 
     mod.value.apply(mod, parseHeadersValueDefinition);
+
+    mod.value.apply(mod, mediatorDefinition);
 
     mod.factory.apply(mod, factoryDefinition);
 
