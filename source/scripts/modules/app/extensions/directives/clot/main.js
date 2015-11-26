@@ -3,22 +3,12 @@ define(['angular'], function (angular) {
 
     var ClotExtension = function ($provide) {
         var decorator = function($delegate) {
-            var directive = $delegate[0];
-            var link = directive.link;
-
-            directive.template = '<div>Clot has been extended</div>';
-            directive.restrict = 'AE';
-            directive.replace = false;
-
-            directive.compile = function() {
-                return function(scope, element, attrs, ctrls) {
-                    if (typeof link === 'function') {
-                        return link.apply(this, arguments);
-                    }
-                };
+            this.$injector = ['$delegate'];
+            $delegate.getPepe = function() {
+                return 'Other Pepe';
             };
             return $delegate;
-        };
+        }
         decorator.$inject = ['$delegate'];
 
         $provide.decorator('clotDirective', decorator);

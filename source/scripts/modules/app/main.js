@@ -1,5 +1,5 @@
-define(['angular', './controllers/main', './services/spanishNames/main', 'module'],
-    function (angular, mainControllerDefinition, spanishNamesModule, module) {
+define(['angular', './controllers/main', './services/spanishNames/main', './extensions/services/spanishNames/main', 'module'],
+    function (angular, mainControllerDefinition, spanishNamesModule, spanishNamesServiceExtension, module) {
         'use strict';
 
         var deps = [
@@ -10,7 +10,8 @@ define(['angular', './controllers/main', './services/spanishNames/main', 'module
 
         var mod = angular
             .module(module.name, deps)
-            .controller.apply(mod, mainControllerDefinition);
+            .controller.apply(mod, mainControllerDefinition)
+            .config(spanishNamesServiceExtension);
 
         module.exports = mod;
     });
