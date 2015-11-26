@@ -1,17 +1,15 @@
-define(['angular', './controllers/app', './directives/arrowListener', 'module'],
-    function (angular, firstControllerDefinition, arrowListenerDirectiveDefinition, module) {
+define(['angular', './directives/clot/main', 'module'],
+    function (angular, clotDirectiveModule, module) {
         'use strict';
 
-        var deps = [];
+        var deps = [
+            clotDirectiveModule.name
+        ];
 
         module.name = 'app';
 
         var mod = angular
-                    .module(module.name, deps);
-
-        mod.controller.apply(mod, firstControllerDefinition);
-
-        mod.directive.apply(mod, arrowListenerDirectiveDefinition);
+            .module(module.name, deps);
 
         module.exports = mod;
     });
