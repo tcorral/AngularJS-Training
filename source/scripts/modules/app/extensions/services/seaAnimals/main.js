@@ -1,4 +1,4 @@
-define(function (require, exports, module) {
+define(['../../../services/seaAnimals/factory', 'module'], function (original, module) {
     'use strict';
 
     var SeaAnimalsFactoryExtension = function ($provide) {
@@ -15,7 +15,7 @@ define(function (require, exports, module) {
 
         decorator.$inject = ['$delegate', '$q'];
 
-        $provide.decorator('SeaAnimals', decorator);
+        $provide.decorator(original[0], decorator);
     };
 
     SeaAnimalsFactoryExtension.$inject = ['$provide'];

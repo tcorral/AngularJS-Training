@@ -1,9 +1,8 @@
-define(function (require, exports, module) {
+define(['../../directives/clot/main', 'module'], function (original, module) {
     'use strict';
 
     var ClotExtension = function ($provide) {
         var decorator = function($delegate) {
-            this.$injector = ['$delegate'];
             $delegate.getPepe = function() {
                 return 'Other Pepe';
             };
@@ -11,7 +10,7 @@ define(function (require, exports, module) {
         }
         decorator.$inject = ['$delegate'];
 
-        $provide.decorator('clotDirective', decorator);
+        $provide.decorator(original.name + 'Directive', decorator);
     };
 
     ClotExtension.$inject = ['$provide'];
