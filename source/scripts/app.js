@@ -12,6 +12,6 @@ require.config({
     }
 });
 
-require(['angular', 'modules/todo/main'], function (angular) {
-    angular.bootstrap(document.getElementById('app'), ['app']);
+require(['angular', 'modules/app/main'], function (angular) {
+    angular.bootstrap(document.body, ['app']);
 });

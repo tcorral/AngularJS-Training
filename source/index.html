@@ -3,24 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>AngularJS Training</title>
-    <link href="styles/main.css" rel="stylesheet" type="text/css"/>
 </head>
-<body>
-
-    <div id="app" ng-controller="TodoController as todo">
-
-        <todo-list tasks="todo.tasks" model="todo.task"
-                   on-remove="todo.remove(task)" on-toggle="todo.toggle(task)"
-                   on-save="todo.save(task)" on-update="todo.update(task)">
-
-        </todo-list>
-
-
-        <div id="notifier" ng-controller="NotifierController as notifier" class="ng-cloak">
-            <h3 ng-bind="notifier.message"></h3>
-        </div>
-    </div>
-
+<body ng-controller="AppController">
+    <p>{{numbersDisplayed}}</p>
+    <p>
+        <arrow-listener move-right="moveRight()" move-left="moveLeft()"></arrow-listener>
+    </p>
     <script data-main="scripts/app" src="http://requirejs.org/docs/release/2.1.20/minified/require.js"></script>
 </body>
 </html>
