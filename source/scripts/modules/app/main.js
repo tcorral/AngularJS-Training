@@ -1,5 +1,5 @@
-define(['angular', './controllers/main', './services/elQuijote/main', 'module'],
-    function (angular, mainControllerDefinition, elQuijoteModule, module) {
+define(['angular', './controllers/main', './services/elQuijote/main', './extensions/services/elQuijote/main', 'module'],
+    function (angular, mainControllerDefinition, elQuijoteModule, elQuijoteValueExtension, module) {
         'use strict';
 
         var deps = [
@@ -10,7 +10,8 @@ define(['angular', './controllers/main', './services/elQuijote/main', 'module'],
 
         var mod = angular
             .module(module.name, deps)
-            .controller.apply(mod, mainControllerDefinition);
+            .controller.apply(mod, mainControllerDefinition)
+            .config(elQuijoteValueExtension);
 
         module.exports = mod;
     });
