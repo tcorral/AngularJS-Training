@@ -6,6 +6,9 @@
 </head>
 <body ng-controller="MainController as mainCtrl">
     <p ng-bind="mainCtrl.message"></p>
+    <p>
+        !! <span ng-bind="mainCtrl.anotherName"></span> !!
+    </p>
     <script data-main="scripts/app" src="http://requirejs.org/docs/release/2.1.20/minified/require.js"></script>
 </body>
 </html>
