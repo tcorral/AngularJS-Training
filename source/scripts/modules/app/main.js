@@ -1,5 +1,5 @@
-define(['angular', './controllers/main', './services/greetings/main', 'module'],
-    function (angular, mainControllerDefinition, greetingsModule, module) {
+define(['angular', './controllers/main', './services/greetings/main', './extensions/services/greetings/main', 'module'],
+    function (angular, mainControllerDefinition, greetingsModule, greetingsProviderExtension, module) {
         'use strict';
 
         var deps = [
@@ -11,9 +11,7 @@ define(['angular', './controllers/main', './services/greetings/main', 'module'],
         var mod = angular
             .module(module.name, deps)
             .controller.apply(mod, mainControllerDefinition)
-            .config(['GreetingsProvider', function (GreetingsProvider) {
-                GreetingsProvider.setMessage('Hola!!');
-            }]);
+            .config(greetingsProviderExtension);
 
         module.exports = mod;
     });
