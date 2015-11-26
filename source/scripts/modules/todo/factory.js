@@ -38,6 +38,69 @@ define(['angular'], function (angular) {
 
                 return defer.promise;
             },
+            update: function (task) {
+                var defer = $q.defer();
+                var putConfig = {
+                    data: task
+                };
+
+                angular.extend(putConfig, getHttpBaseConfig('put'), {
+                    "Content-Type": "application/json"
+                });
+
+                putConfig.url += '/' + task.objectId;
+
+                $http(putConfig)
+                    .then(
+                        function () {
+                            fetchAllFromServer()
+                                .then(
+                                    function (tasks) {
+                                        defer.resolve(tasks);
+                                    },
+                                    function (error) {
+                                        defer.reject(error);
+                                    }
+                                );
+                        },
+                        function (error) {
+                            defer.reject(error);
+                        }
+                    );
+
+                return defer.promise;
+            },
+            save: function (task) {
+                var defer = $q.defer();
+
+                var postConfig = {
+                    data: task
+                };
+
+                angular.extend(postConfig, getHttpBaseConfig('post'), {
+                    "Content-Type": "application/json"
+                });
+
+                $http(postConfig)
+                    .then(
+                        function () {
+                            fetchAllFromServer()
+                                .then(
+                                    function (tasks) {
+                                        defer.resolve(tasks);
+                                    },
+                                    function (error) {
+                                        defer.reject(error);
+                                    }
+                                );
+                        },
+                        function (error) {
+                            defer.reject(error);
+                        }
+                    );
+
+                return defer.promise;
+            },
             toggle: function (task) {
                 var defer = $q.defer();
                 var putConfig = {

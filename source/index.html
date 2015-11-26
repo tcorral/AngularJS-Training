@@ -7,7 +7,9 @@
 </head>
 <body>
     <div id="app" ng-controller="TodoController as todo">
-        <todo-list tasks="todo.tasks" on-remove="todo.remove(task)" on-toggle="todo.toggle(task)"></todo-list>
+        <todo-list tasks="todo.tasks" model="todo.task"
+                   on-remove="todo.remove(task)" on-toggle="todo.toggle(task)"
+                   on-save="todo.save(task)" on-update="todo.update(task)"></todo-list>
     </div>
     <script data-main="scripts/app" src="http://requirejs.org/docs/release/2.1.20/minified/require.js"></script>
 </body>
